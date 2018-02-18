@@ -1,0 +1,10 @@
+<launch>
+	<node name="set_parameters" pkg="straightmiro" type="set_goal.py" respawn="false">
+	</node>
+	<node name="gostraight" pkg="straightmiro" type="straight.py" respawn="true">
+	</node>
+	<node name="distance" pkg="straightmiro" type="scan.py" respawn="true">
+	</node>
+	<node name="avoid" pkg="straightmiro" type="location_miro.py" respawn="true">
+	</node>
+</launch>
