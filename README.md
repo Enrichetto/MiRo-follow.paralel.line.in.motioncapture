@@ -1,4 +1,4 @@
-# MiRo Obstacle avoidance using sonar sensor and moving towards goal position
+# [SoRo Project] MiRo Obstacle avoidance using sonar sensor and moving towards goal position
 
 ## Project Contributers: 
 1. enrico.borello@yahoo.it
