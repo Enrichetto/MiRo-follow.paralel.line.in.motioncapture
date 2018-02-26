@@ -1,85 +1,52 @@
-# Straightmiro
---------------------ENRICO BORELLO's note--------------------------
+# [SoRo Project] MiRo Obstacle avoidance using sonar sensor and moving towards goal position
 
+## Project Contributers: 
+1. enrico.borello@yahoo.it
+2. kai.sukumar@gmail.com
+3. leonard.marsault@gmail.com
 
+## Objective:
+MiRo moving towards the goal set inside the motion capture area. Along with, using data coming from Sonar sensor of MiRo, to satisfy a control law that avoids obstacles.
 
--------------position of miro by motion capture------
+## Accomplishments
+### MiRo orients towards the goal and moves towards it. If there is an obstacle, it avoids it using SONAR
+Decision on direction based on angle as well as distance from goal position
 
-the straight.py node subscrive a node that should publish in this way
--rostopic echo /miro/pose
+Discovery of 'drive body through motion controller' for natural movement of MiRo (motion controller is inbuilt in MiRo based on Park's and Kuiper's 2011 (ICRA) algorithm)
 
+### Modules or Nodes in the system
+Three nodes (orient and move towards goal, scan the obstacle, avoid the obstacle using odometry of MiRo)
 
---------------------mirosetup-----------------------------
-follow this step
+### Limitations of the system
+Sonar values not very accurate (Some values in he input-stream come in as zero, hence disturbing the logic of the obstacle avoidance code)
 
+Markers on MiRo were not detected consistently, hence moving towards goal position using motion capture, is not working efficiently.
 
--Connect the miro with smarthone
+At the end of the project, the program logic is adhoc. This can be futher improved in future, by overcoming the above limitations.
 
+## How to Run:
 
--with the app put the miro in normal mode
+To configure MiRo with your workstation follow the setup guide on official website or https://github.com/EmaroLab/MIRO
 
--enable the bridge
+To run our application (miro should be able to follow a straight line given a goal position)
 
-- write in the terminal of your computer the ip of miro that you can see in the app
-  ssh root@hereputtheIPofmiroapp
+----Lauch the program----
 
--digit the password 
- MIROOpen1
+you can lauch all the three node: ```roslaunch straightmiro miro.launch``` OR run a single node using ```rosrun straightmiro nameofthenode.py```
 
-- write 
-sudo nano ~/.profile
+----set_goal.py---- 
 
--write your IP in the file in a line with:
-#.. bla bla (line simply for your reference)
-#.. bla bla (line simply for your reference)
-#.. bla bla (line simply for your reference) 
-ROS_MASTER= putyourip
-
--save and exit from the miro room, you can do date writing:
-   exit
-
--------------see if you are connectend with the miro-------- 
-
--enter in the folder where you dowload the miro file, if you dont already do that ->(http://labs.consequentialrobotics.com/miro/mdk/)
-  ~/lib/mdk/bin/shared (in my case)
-
--write this in your terminal
-
-- ./miro_ros_client_gui.py robot=rob01
-
-
--you should see what miro see.
-
--IF NOT
-
-put miro in demo mode using your smartphone, and again in normal mode.
-
-
-
-----------------lauch the program----------
--you can lauch all the three node:
-roslaunch straightmiro miro.launch
-
--or run a single node using
-rosrun straightmiro nameofthenode.py
-
-
-----------set_goal.py------------------
 Parameter Server is used for set the global parameters that we need for lauch the nodes.
 
- set_goal.py  declares and set the parameters
+set_goal.py declares and sets the parameters
 
-
-
-
----------------------Stright miro-------------
-
-
-miro should be able to follow a straight line given a goal position
+----MiRo moving in a straight line----
 
 -depending from how you take the miro position you could have problem of orientation.
 
 -in the code the is a commented part that should be able to fix miro position if it go out from the straight line( for example if there is a note regual ground)
+
+-the straight.py node subscrive a node that should publish in this way ```rostopic echo /miro/pose```
 
 
 
